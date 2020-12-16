@@ -14,5 +14,12 @@ namespace WizardBot
         {
             await Context.Channel.SendMessageAsync($"Hello {Context.Message.Author}!");
         }
+
+        [Command("help")]
+        public void Help()
+        {
+            var list = CommandHandler._commands.Commands.ToList();
+            Console.WriteLine("");
+        }
     }
 }
