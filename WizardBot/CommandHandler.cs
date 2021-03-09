@@ -19,8 +19,19 @@ namespace WizardBot
             _config = config;
             _commands = commands;
 
+            _discord.Connected += OnConnected;
             _discord.Ready += OnReady;
             _discord.MessageReceived += OnMessageRecieved;
+            _discord.Disconnected += OnDisconnect;
+           // _discord.ChannelCreated += OnChannelCreate;
+        }
+
+
+        private Task OnDisconnect(Exception arg)
+        {
+            Console.WriteLine($"{_discord.CurrentUser.Username}#{_discord.CurrentUser.Discriminator} is disconnected.");
+            Console.Write(arg.StackTrace);
+            return Task.CompletedTask;
         }
 
         private async Task OnMessageRecieved(SocketMessage arg)
@@ -30,13 +41,13 @@ namespace WizardBot
                 return;
             var context = new SocketCommandContext(_discord, message);
             int pos = 0;
-            if(message.HasStringPrefix(_config["prefix"], ref pos) || message.HasMentionPrefix(_discord.CurrentUser, ref pos))
+            if(message.HasStringPrefix("wiz ", ref pos) || message.HasMentionPrefix(_discord.CurrentUser, ref pos))
             {
                 var result = await _commands.ExecuteAsync(context, pos, _provider);
                 if (!result.IsSuccess)
                 {
                     var reason = result.Error;
-                    await context.Channel.SendMessageAsync("Mujii katti mistake garxas jatho.");
+                    await context.Channel.SendMessageAsync();
                     Console.WriteLine(reason);
                 }
             }
@@ -44,7 +55,13 @@ namespace WizardBot
 
         private Task OnReady()
         {
-            Console.WriteLine($"Connected as {_discord.CurrentUser.Username}#{_discord.CurrentUser.Discriminator}");
+            Console.WriteLine($"{_discord.CurrentUser.Username}#{_discord.CurrentUser.Discriminator} is ready.");
+            return Task.CompletedTask;
+        }
+
+        private Task OnConnected()
+        {
+            Console.WriteLine($"{_discord.CurrentUser.Username}#{_discord.CurrentUser.DiscriminatorValue} is connected");
             return Task.CompletedTask;
         }
     }

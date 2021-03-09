@@ -30,7 +30,7 @@ namespace WizardBot
 
         public async Task StartAsync()
         {
-            string token = _config["token"];
+            string token = "Nzg4NjQ3MTk4NTE0MjE2OTYx.X9mi8A.AiBGIdvFZSoaWi1I2ErAJOe2hHw";
             if (string.IsNullOrEmpty(token))
             {
                 Console.WriteLine("Please, provide token in the config.json file.");

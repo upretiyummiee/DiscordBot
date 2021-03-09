@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,14 +17,13 @@ namespace WizardBot
 
         public Startup(string[] args)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(AppContext.BaseDirectory)
-                .AddJsonFile("config.json");
+            var builder = new ConfigurationBuilder();
             configuration = builder.Build();
         }
 
         public static async Task RunAsync(string[] args)
         {
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             var startup = new Startup(args);
             await startup.RunAsync();
         }
