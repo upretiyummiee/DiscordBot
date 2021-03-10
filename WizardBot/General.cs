@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Resources;
 using System.IO;
+using System.Reflection;
 
 namespace WizardBot
 {
@@ -121,12 +122,16 @@ namespace WizardBot
         }
 
         [Command("roast")]
+        [Summary("Bot sends you a quote to roast the @mention user")]
         public async Task RoastUser(IUser user = null) {
-            string projectDir = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).
-        Parent.Parent.FullName;
-            string resxFile = projectDir + "\\Roast.resx";
-            using (ResourceReader reader = new ResourceReader(resxFile))
-            await Context.Channel.SendMessageAsync();
+
+            var random = new Random();
+            int i = random.Next(1, 7);
+
+            ResourceManager rm = new ResourceManager("WizardBot.Roast", Assembly.GetExecutingAssembly());
+            string line = rm.GetString(i.ToString());
+
+            await Context.Channel.SendMessageAsync(line);
         }
 
 

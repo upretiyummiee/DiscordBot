@@ -68,5 +68,59 @@ namespace WizardBot {
                 return ResourceManager.GetString("1", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You talk too much. Want me to put a used meansurated cloth of a bitch in your mouth?.
+        /// </summary>
+        public static string _2 {
+            get {
+                return ResourceManager.GetString("2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If I had a face like yours&apos;, Id sue my parents..
+        /// </summary>
+        public static string _3 {
+            get {
+                return ResourceManager.GetString("3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to She&apos;s a kind of girl a guy should show off, for show and tell, in a psychology class. Crazy bitch..
+        /// </summary>
+        public static string _4 {
+            get {
+                return ResourceManager.GetString("4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you know who fucks your mom rather than your dad? The people you play online competitive game against with..
+        /// </summary>
+        public static string _5 {
+            get {
+                return ResourceManager.GetString("5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A cat took another path because you crossed it..
+        /// </summary>
+        public static string _6 {
+            get {
+                return ResourceManager.GetString("6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Even my dog spitted seing your ugly face..
+        /// </summary>
+        public static string _7 {
+            get {
+                return ResourceManager.GetString("7", resourceCulture);
+            }
+        }
     }
 }
